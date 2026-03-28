@@ -50,7 +50,7 @@ CREATE TABLE briefs (
 - Nota: se RLS via headers der problema, fallback para filtro `.eq()` client-side
 
 ### R4: Supabase Browser Client (`lib/supabase/client.ts`)
-- Usa `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- Usa `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
 - Exporta função `createClient()` (ou instância singleton)
 
 ### R5: Supabase Server Client (`lib/supabase/server.ts`)

@@ -22,7 +22,7 @@ Ferramenta de IA que transforma inputs bagunçados de clientes em briefings estr
 5. **Brief Vivo** — link compartilhável onde o cliente completa lacunas (diferencial principal)
 6. **Exportações** — PDF estilizado + Markdown (copy to clipboard)
 7. **Histórico** — auto-save, lista com score/status, reabrir e editar
-8. **Bilíngue** — PT-BR / EN (toggle no header, IA responde no idioma selecionado)
+8. ~~**Bilíngue**~~ — REMOVIDO do escopo (interface apenas PT-BR)
 
 ## Regras gerais
 
@@ -47,7 +47,7 @@ Ferramenta de IA que transforma inputs bagunçados de clientes em briefings estr
 | Real-time | Supabase Realtime | Subscription para updates do Brief Vivo (fallback: polling 5s) |
 | PDF | @react-pdf/renderer | Geração client-side, layout customizável em React |
 | Animações | Framer Motion | Streaming reveal, score counter, transitions |
-| i18n | Context customizado | Leve, dicionário PT/EN sem dependência extra |
+| ~~i18n~~ | ~~Context customizado~~ | REMOVIDO — interface apenas PT-BR |
 | Deploy | Vercel | Zero-config para Next.js |
 
 ## Variáveis de ambiente
@@ -55,7 +55,7 @@ Ferramenta de IA que transforma inputs bagunçados de clientes em briefings estr
 ```
 OPENROUTER_API_KEY=sk-or-...
 NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 ```
 
@@ -101,7 +101,7 @@ briefforge/
 │   ├── brief-card.tsx              # Card na lista de histórico
 │   ├── share-button.tsx            # Botão de compartilhar + gera link
 │   ├── realtime-indicator.tsx      # Indicador "cliente está preenchendo..."
-│   ├── language-toggle.tsx         # Switch PT/EN
+│   ├── # language-toggle.tsx       # REMOVIDO — sem i18n
 │   ├── theme-toggle.tsx            # Switch dark/light
 │   └── header.tsx                  # Header com logo, nav, toggles
 ├── lib/
@@ -117,15 +117,12 @@ briefforge/
 │   ├── pdf.ts                      # Geração de PDF
 │   ├── markdown.ts                 # Geração de Markdown
 │   ├── types.ts                    # TypeScript interfaces globais
-│   └── i18n/
-│       ├── context.tsx             # Provider de idioma
-│       ├── pt-BR.ts                # Dicionário português
-│       └── en.ts                   # Dicionário inglês
+│   # i18n/ — REMOVIDO — interface apenas PT-BR
 ├── hooks/
 │   ├── use-anonymous-id.ts         # Gera/persiste ID anônimo no localStorage
 │   ├── use-brief-stream.ts         # Hook que usa useObject do Vercel AI SDK
 │   ├── use-brief-realtime.ts       # Hook de Supabase Realtime para updates do cliente
-│   └── use-locale.ts               # Hook de idioma
+│   # use-locale.ts                 # REMOVIDO — sem i18n
 └── styles/
     └── globals.css                 # Tailwind base + CSS variables + fonts
 ```
@@ -278,8 +275,8 @@ Cada spec em `/specs/` define os testes na seção `TDD — Testes`. Ao implemen
 | 10 | Brief Vivo (F5) | `specs/brief_vivo.md` | 26 |
 | 11 | Exportações (F6) | `specs/exportacoes.md` | 17 |
 | 12 | Histórico (F7) | `specs/historico.md` | 14 |
-| 13 | Bilíngue (F8) | `specs/bilingue.md` | 16 |
-| | **Total** | | **213** |
+| ~~13~~ | ~~Bilíngue (F8)~~ | ~~`specs/bilingue.md`~~ | ~~16~~ | REMOVIDO |
+| | **Total** | | **197** |
 
 ## Gestão de tarefas (TASKS.md)
 
@@ -360,7 +357,7 @@ O arquivo `reference.html` na raiz é a referência visual do projeto. **Todas a
 
 ## Prioridade de features (ordem de corte se faltar tempo)
 
-1. Corta bilíngue (faz só PT-BR)
+1. ~~Corta bilíngue (faz só PT-BR)~~ — JÁ CORTADO
 2. Corta PDF (mantém só Markdown)
 3. Simplifica Realtime (polling ao invés de subscription)
 4. **NUNCA corta o Brief Vivo** (é o diferencial)
@@ -394,3 +391,5 @@ Após implementar features que tocam API routes, banco de dados ou uploads, invo
 ## Aprendizados
 
 Descobertas feitas durante o desenvolvimento que impactam o projeto. Registre aqui qualquer comportamento inesperado, workaround necessário, ou decisão técnica importante que não é óbvia pelo código.
+
+- **`useObject` no `@ai-sdk/react` v3.x é experimental:** O export é `experimental_useObject`, não `useObject`. Usar `import { experimental_useObject as useObject } from '@ai-sdk/react'`.
