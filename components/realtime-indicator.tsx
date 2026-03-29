@@ -25,6 +25,19 @@ export function RealtimeIndicator({
     return null
   }
 
+  const allFilled = totalPendingCount > 0 && clientFilledCount >= totalPendingCount
+
+  if (allFilled) {
+    return (
+      <div className="flex items-center gap-2 text-sm">
+        <span className="inline-flex h-2.5 w-2.5 rounded-full bg-success" />
+        <span className="text-success">
+          Cliente completou todos os campos
+        </span>
+      </div>
+    )
+  }
+
   return (
     <div className="flex items-center gap-2 text-sm">
       <span className="relative flex h-2.5 w-2.5">

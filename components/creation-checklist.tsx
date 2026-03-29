@@ -1,6 +1,7 @@
 "use client"
 
-import { ClipboardCheck } from "lucide-react"
+import { useState } from "react"
+import { ClipboardCheck, Copy, Check } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -42,6 +43,23 @@ interface CreationChecklistProps {
 // ---------------------------------------------------------------------------
 
 export function CreationChecklist({ fields }: CreationChecklistProps) {
+  const [copied, setCopied] = useState(false)
+
+  function buildChecklistText() {
+    return CHECKLIST_ITEMS.map(({ field, label }) => {
+      const f = fields[field]
+      const hasContent = f.status !== "missing" && f.content.trim()
+      if (!hasContent) return `${label}: A definir`
+      return `${label}: ${f.content}`
+    }).join("\n\n")
+  }
+
+  async function handleCopy() {
+    await navigator.clipboard.writeText(buildChecklistText())
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -54,11 +72,30 @@ export function CreationChecklist({ fields }: CreationChecklistProps) {
         </button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[85vh] overflow-y-auto border-bf-border bg-bg sm:max-w-lg">
+      <DialogContent showCloseButton={false} className="max-h-[85vh] overflow-y-auto border-bf-border bg-bg sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-display text-lg tracking-tight text-text">
-            Checklist para Criação
-          </DialogTitle>
+          <div className="flex items-center justify-between">
+            <DialogTitle className="font-display text-lg tracking-tight text-text">
+              Checklist para Criação
+            </DialogTitle>
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="inline-flex items-center gap-1.5 rounded-full border border-bf-border px-3 py-1.5 text-xs font-medium text-text-secondary transition-all duration-300 hover:scale-105 hover:bg-surface-hover active:scale-95"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-3.5 w-3.5 text-success" />
+                  Copiado
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3.5 w-3.5" />
+                  Copiar
+                </>
+              )}
+            </button>
+          </div>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 py-1">

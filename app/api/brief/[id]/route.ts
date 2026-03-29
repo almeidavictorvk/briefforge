@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
 import { parseBriefRow } from '@/lib/supabase/helpers'
-import { calculateScore } from '@/lib/scoring'
 import { FIELD_NAMES } from '@/lib/types'
-import type { BriefRow, BriefFields, BriefField, AuditResults } from '@/lib/types'
+import type { BriefRow } from '@/lib/types'
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
@@ -119,7 +118,8 @@ export async function PATCH(
         ...client_inputs,
       }
 
-      // Also merge client_inputs into structured_brief so the score updates.
+      // Also merge client_inputs into structured_brief so the data is ready
+      // for re-audit (score is NOT recalculated here — only on re-audit).
       // GUARD: only merge inputs that are NEW (not already processed in a
       // previous PATCH). This prevents duplication when a re-audit changes
       // the field status back to "partial" and a subsequent PATCH re-iterates
@@ -151,38 +151,14 @@ export async function PATCH(
         }
       }
 
-      // Recalculate score from the merged structured_brief so it reflects
-      // client inputs immediately, without waiting for an AI re-audit.
-      const briefFields = {} as BriefFields
-      for (const fieldName of FIELD_NAMES) {
-        const raw = mergedStructuredBrief[fieldName] as Record<string, unknown> | undefined
-        if (raw && typeof raw === 'object' && 'content' in raw && 'status' in raw) {
-          briefFields[fieldName] = {
-            content: String(raw.content ?? ''),
-            status: raw.status as BriefField['status'],
-          }
-        } else {
-          briefFields[fieldName] = { content: '', status: 'missing' }
-        }
-      }
-      const existingAuditRaw = (existingRow.audit_results ?? {}) as Record<string, unknown>
-      const auditForScore: AuditResults = {
-        gaps: Array.isArray(existingAuditRaw.gaps)
-          ? (existingAuditRaw.gaps as AuditResults['gaps'])
-          : [],
-        contradictions: Array.isArray(existingAuditRaw.contradictions)
-          ? (existingAuditRaw.contradictions as AuditResults['contradictions'])
-          : [],
-        overall_note: typeof existingAuditRaw.overall_note === 'string'
-          ? existingAuditRaw.overall_note
-          : '',
-      }
-      const recalculatedScore = calculateScore(briefFields, auditForScore)
+      // NOTE: We intentionally do NOT recalculate the score here. The score
+      // should only update after a re-audit (manual or automatic when the
+      // client finishes all fields). Updating it on every field save causes
+      // confusing score oscillations for the owner watching in real-time.
 
       const updatePayload: Record<string, unknown> = {
         client_inputs: mergedClientInputs,
         structured_brief: mergedStructuredBrief,
-        score: recalculatedScore,
         client_last_seen: now,
         updated_at: now,
       }
