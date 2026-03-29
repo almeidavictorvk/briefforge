@@ -13,29 +13,29 @@ Passo a passo para testar manualmente todas as funcionalidades do app, de cabo a
 ## Fase 1 — Home Page (`/`)
 
 ### 1.1 Carregamento inicial
-- [ x] Acessar `http://localhost:3000`
-- [x ] Verificar que a home carrega sem erros no console
-- [ x] Header aparece com logo "BriefForge", navegação e toggle dark/light
-- [ x] Modo dark é o padrão
-- [ x] Textarea de input está visível e vazia
-- [ x] Seção "Briefs recentes" aparece (vazia se primeiro uso)
+- [ ] Acessar `http://localhost:3000`
+- [ ] Verificar que a home carrega sem erros no console
+- [ ] Header aparece com logo "BriefForge", navegação e toggle dark/light
+- [ ] Modo dark é o padrão
+- [ ] Textarea de input está visível e vazia
+- [ ] Seção "Briefs recentes" aparece (vazia se primeiro uso)
 
 ### 1.2 Toggle de tema
-- [x ] Clicar no toggle dark/light no header
-- [ x] Tema muda para light — cores, backgrounds e textos se adaptam
-- [ x] Recarregar a página — tema persiste (salvo no localStorage)
-- [ x] Voltar para dark mode
+- [ ] Clicar no toggle dark/light no header
+- [ ] Tema muda para light — cores, backgrounds e textos se adaptam
+- [ ] Recarregar a página — tema persiste (salvo no localStorage)
+- [ ] Voltar para dark mode
 
 ### 1.3 Input livre — validação
-- [ x] Tentar submeter com textarea vazia — botão deve estar desabilitado
-- [ x] Digitar menos de 10 caracteres — botão continua desabilitado
-- [ x] Digitar 10+ caracteres — botão "Forjar Brief" habilita
-- [ x] Contador de caracteres aparece e atualiza em tempo real
+- [ ] Tentar submeter com textarea vazia — botão deve estar desabilitado
+- [ ] Digitar menos de 10 caracteres — botão continua desabilitado
+- [ ] Digitar 10+ caracteres — botão "Forjar Brief" habilita
+- [ ] Contador de caracteres aparece e atualiza em tempo real
 
 ### 1.4 Botão "Colar"
-- [ x] Copiar um texto qualquer para o clipboard
-- [ x] Clicar no botão "Colar" na textarea
-- [ x] Texto do clipboard aparece na textarea
+- [ ] Copiar um texto qualquer para o clipboard
+- [ ] Clicar no botão "Colar" na textarea
+- [ ] Texto do clipboard aparece na textarea
 
 ### 1.5 Submissão do input
 Use este texto de exemplo (cole na textarea):
@@ -49,9 +49,9 @@ jovem, com humor. Prazo: precisamos de tudo pronto até final de abril. Ah, a ge
 muito no iFood e no Rappi, aquelas campanhas criativas que eles fazem.
 ```
 
-- [x ] Colar o texto acima e clicar "Forjar Brief"
-- [ x] Loading aparece no botão
-- [ x] Página redireciona para `/brief/{id}?streaming=true`
+- [ ] Colar o texto acima e clicar "Forjar Brief"
+- [ ] Loading aparece no botão
+- [ ] Página redireciona para `/brief/{id}?streaming=true`
 - [ ] Anotar o ID do brief: `8516b5ad-29b6-41e0-bb44-1a4aa16cda6d`
 
 ---
@@ -59,12 +59,12 @@ muito no iFood e no Rappi, aquelas campanhas criativas que eles fazem.
 ## Fase 2 — Geração com Streaming (`/brief/[id]`)
 
 ### 2.1 Streaming de IA
-- [ x] Após redirect, a página de brief carrega
-- [ x] Streaming começa automaticamente — campos vão aparecendo progressivamente
-- [ x] Título do brief aparece (ex: "Campanha de Lançamento FoodRush")
-- [ x] Score aparece e anima de 0 até o valor final
-- [ x] Os 10 campos vão populando um a um com animação staggered
-- [ x] Painel de auditoria (direita) popula com gaps e contradições
+- [ ] Após redirect, a página de brief carrega
+- [ ] Streaming começa automaticamente — campos vão aparecendo progressivamente
+- [ ] Título do brief aparece (ex: "Campanha de Lançamento FoodRush")
+- [ ] Score aparece e anima de 0 até o valor final
+- [ ] Os 10 campos vão populando um a um com animação staggered
+- [ ] Painel de auditoria (direita) popula com gaps e contradições
 
 ### 2.2 Campos gerados
 Verificar que os 10 campos foram preenchidos pela IA:
@@ -186,6 +186,40 @@ Verificar que os 10 campos foram preenchidos pela IA:
 ### 6.4 Completar todos os campos pendentes
 - [ ] Preencher todos os campos pendentes restantes
 - [ ] Quando tudo estiver preenchido, mensagem "Obrigado! Todas as informações foram preenchidas." aparece
+
+### 6.5 Exemplos de respostas do cliente (copie e use nos campos)
+
+Abaixo estão respostas realistas que simulam um cliente preenchendo os campos pendentes do Brief Vivo. Use-as para testar o fluxo completo:
+
+**Mensagem principal / Ideia central:**
+> A ideia central é posicionar o FoodRush como o app de delivery que entende o ritmo da vida jovem nas grandes cidades — rápido, prático e sem frescura. Queremos que as pessoas lembrem que com o FoodRush, pedir comida é tão natural e rápido quanto mandar um áudio no WhatsApp. A mensagem-chave é: "sua fome não espera, e a gente também não." O app precisa ser lembrado como a alternativa que chegou pra sacudir o mercado, com uma personalidade mais próxima e divertida do que os concorrentes já consolidados.
+
+**Contexto / Cenário atual:**
+> A empresa já atua no segmento de alimentação e identificou uma oportunidade clara: apesar de iFood e Rappi dominarem o mercado, existe uma fatia de público jovem que se sente "mais um número" nessas plataformas. O FoodRush nasce dessa lacuna — a proposta é oferecer uma experiência mais curada, com interface pensada pra Gen Z, promoções agressivas de entrada e uma comunicação que fala a língua desse público. O app já está desenvolvido e funcional; o que falta agora é o barulho certo pra colocar ele no mapa.
+
+**Objetivo / Resultado ideal:**
+> O objetivo direto é aumentar os downloads do app em 50% no primeiro mês de campanha. Mas além do número, o resultado ideal é gerar buzz nas redes — queremos que o FoodRush apareça nos stories, que as pessoas compartilhem os conteúdos de forma orgânica, e que a marca comece a ser reconhecida como uma alternativa real no dia a dia. Se no final do primeiro mês tivermos atingido a meta de downloads e o app estiver sendo mencionado espontaneamente nas redes, a campanha terá sido um sucesso.
+
+**Público-alvo:**
+> Jovens de 18 a 30 anos, moradores de grandes centros urbanos, que pedem delivery com frequência (pelo menos 2-3x por semana). São pessoas conectadas, heavy users de Instagram e TikTok, que valorizam conveniência e são sensíveis a preço — mas também se atraem por marcas com personalidade. Pensa no universitário que pede pizza às 23h, no jovem profissional que não tem tempo de cozinhar no almoço, ou no casal que quer experimentar restaurante novo sem sair do sofá.
+
+**Tom de voz:**
+> 100% descontraída, com humor. A comunicação precisa soar como um amigo engraçado que entende suas dores com comida — não como uma empresa tentando te vender algo. Pode usar gírias, memes, referências de cultura pop. O tom é leve, rápido e espirituoso. Nada de "prezado cliente" ou linguagem corporativa. Se o post não fizer a pessoa pelo menos sorrir, ele não passou no teste.
+
+**Entregáveis:**
+> Posts estáticos e em carrossel para Instagram (feed e stories), vídeos curtos no formato Reels/TikTok (entre 15-30 segundos), e possivelmente alguns roteiros para conteúdo com creators. Tudo precisa ser pensado mobile-first e otimizado para engajamento nessas duas plataformas. Não estamos falando de site ou peças offline — o foco é 100% social media.
+
+**Orçamento:**
+> Temos R$ 15.000 disponíveis para toda a campanha. Sabemos que é um orçamento enxuto, especialmente considerando que estamos competindo por atenção contra players com budgets milionários como iFood e Rappi. Por isso, a estratégia precisa ser cirúrgica — priorizar conteúdo orgânico de alto impacto, investir de forma segmentada em mídia paga (focando nos públicos com maior propensão a conversão), e apostar em formatos que têm potencial de viralização natural. Cada real precisa trabalhar dobrado. A ideia é compensar orçamento com criatividade e inteligência na distribuição.
+
+**Prazo:**
+> Todo o material precisa estar finalizado e aprovado até o final de abril. O lançamento da campanha coincide com o go-to-market do app, então não tem muita margem para atraso — o timing é parte da estratégia.
+
+**KPIs / Como medir sucesso:**
+> O KPI principal é o aumento de 50% nos downloads no primeiro mês. Como indicadores secundários: taxa de engajamento nos posts (likes, comentários, compartilhamentos, saves), crescimento de seguidores nos perfis do FoodRush, e volume de menções orgânicas da marca. Se além dos downloads a gente conseguir um custo por instalação (CPI) dentro do orçamento de R$ 15 mil e pelo menos 2-3 conteúdos viralizando organicamente, isso seria o cenário ideal.
+
+**Referências:**
+> As campanhas do iFood são referência direta — especialmente as que usam humor situacional e memes do momento. A Rappi também, principalmente quando faz collabs com creators e usa um tom irreverente. Fora do delivery, marcas como Nubank (comunicação leve e acessível) e Duolingo no TikTok (humor absurdo e engajamento alto) são inspirações de tom de voz. O que todas essas têm em comum é que não parecem propaganda — parecem conteúdo nativo da plataforma, e é exatamente isso que queremos.
 
 ---
 
@@ -344,6 +378,8 @@ empresas de 50-500 funcionários.
 
 ## Notas
 
+- **Modelo de IA:** estamos usando o **Claude Sonnet** via OpenRouter.
+- **Custo da API:** o crédito no OpenRouter é de **$8.81**. Cada resposta da IA custa em média **$0.005** (meio centavo de dólar), então há crédito de sobra para testes extensivos (~1.700 requests).
 - **Realtime pode ter delay de 1-5s** dependendo da conexão com Supabase. Se não atualizar imediatamente, aguardar ou recarregar.
 - **Score varia** dependendo da interpretação da IA — não espere valores exatos, apenas faixas razoáveis.
 - **PDF é gerado client-side** — pode demorar 1-2s em briefs grandes.

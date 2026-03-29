@@ -4,7 +4,7 @@
 
 > Ferramenta de IA que transforma inputs bagunçados de clientes em briefings estruturados, auditados e compartilháveis — sem login, sem fricção.
 
-**[Acessar o BriefForge](https://briefforge.vercel.app)** · [Repositório no GitHub](https://github.com/victoralmeida/briefforge)
+**[Acessar o BriefForge](https://briefforge-one.vercel.app/)** · [Repositório no GitHub](https://github.com/almeidavictorvk/briefforge)
 
 ---
 
@@ -308,6 +308,17 @@ Como uso o Claude Code no dia a dia de desenvolvimento — specs, tasks, subagen
 | [Criação das specs](./process-log/2_meu_workflow/2_criacao_specs.md) | Como pedi ao Claude para gerar 12 specs com TDD rigoroso, e as regras que defini para nunca burlar testes |
 | [Criação das tasks](./process-log/2_meu_workflow/3_criacao_tasks.md) | Uso de 8 subagentes em paralelo para analisar cada spec e gerar ~80 tasks ordenadas por dependência |
 | [Executando uma fase](./process-log/2_meu_workflow/4_executando_task.md) | Exemplo completo de execução: 3 ondas de subagentes paralelos, 18 tasks, 9 testes TDD, validação final |
+
+#### 3. Documentos-chave do projeto
+
+Arquivos que estruturam e guiam todo o desenvolvimento:
+
+| Documento | O que contém |
+|-----------|-------------|
+| [PRD.md](./PRD.md) | Product Requirements Document — escopo completo, arquitetura, schema do banco, prompts de IA, decisões de produto |
+| [Specs](./specs/) | 12 especificações detalhadas, uma por feature, cada uma com requisitos, contratos de API, schema e testes TDD |
+| [TASKS.md](./TASKS.md) | Todas as tarefas organizadas por spec com status (`[ ]` pendente, `[~]` em progresso, `[x]` concluída) |
+| [VALIDACAO.md](./VALIDACAO.md) | Checklist end-to-end para testar manualmente todas as funcionalidades — 12 fases cobrindo desde a home até edge cases |
 
 ---
 
