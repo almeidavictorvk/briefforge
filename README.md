@@ -4,7 +4,7 @@
 
 > Ferramenta de IA que transforma inputs bagunçados de clientes em briefings estruturados, auditados e compartilháveis — sem login, sem fricção.
 
-**[Acessar o BriefForge](https://briefforge-one.vercel.app/)** · [Repositório no GitHub](https://github.com/almeidavictorvk/briefforge) · [Vídeo explicativo da plataforma]([https://github.com/almeidavictorvk/briefforge](https://drive.google.com/file/d/1Frli9uIDkJETZ6Jr49SeFRGf0FqUH5dg/view?usp=sharing)
+**[Acessar o BriefForge](https://briefforge-one.vercel.app/)** · [Repositório no GitHub](https://github.com/almeidavictorvk/briefforge) · [Vídeo explicativo da plataforma](https://drive.google.com/file/d/1Frli9uIDkJETZ6Jr49SeFRGf0FqUH5dg/view?usp=sharing)
 
 ---
 
